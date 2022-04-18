@@ -1,0 +1,44 @@
+[{
+        "id": 1,
+        "title": "Trauma & Accident Care",
+        "img": "https://i.ibb.co/9HtFRXj/services1.jpg",
+        "description": "Industrial employees, road and accident victims sustain injury to the bones, brain and abdomen, etc. The VGM Ortho & Multispecialty Team, with advanced infrastructure at VGM Hospital is well trained to handle such cases."
+
+    },
+    {
+        "id": 2,
+        "title": "Anthroscopy & Sports Injuries",
+        "img": "https://i.ibb.co/hZfWMg6/services2.jpg",
+        "description": "This advanced Key-Hole surgery of joints (usually knee and shoulder) enables ligament repairs on a day care basis. Faster pain relief, minimal blood loss, lower need for pain killers, faster rehabilitation make this an attractive option for all patients."
+
+    },
+    {
+        "id": 3,
+        "title": "Joint Replacement Surgery",
+        "img": "https://i.ibb.co/xKkBjsh/services3.jpg",
+        "description": "Bioclad OT Units strict antibiotic policy, titrated pain relief, regular education programs & post operative structured rehabilitation protocols makes life easy for our Knee/ Hip Replacement patients of International standards."
+
+    },
+    {
+        "id": 4,
+        "title": "Spine Surgery",
+        "img": "https://i.ibb.co/d2zXdmt/services4.jpg",
+        "description": "Back pain and Neck pains are a common source of misery in young IT/Marketing professionals and also the elderly. Disc prolapse, Nerve root compression, and Stenosis, Infections and many more Spine problems can be actively managed at VGM Ortho Centre."
+
+    },
+    {
+        "id": 5,
+        "title": "Paedicatric Orthopedics",
+        "img": "https://i.ibb.co/WvzX8n8/services5.jpg",
+        "description": "Children, unlike adults are prone to a wide range of unique ortho problems including birth/ growth disorders, infections, bone tumours and fractures. These challenging conditions needs attention and intervention from the best doctors in the field."
+
+    },
+    {
+        "id": 6,
+        "title": "Physiotherapy",
+        "img": "https://i.ibb.co/23zctpk/services6.jpg",
+        "description": "Physiotherapy is a boon to mankind. One need not be a patient to visit your physiotherapist. Hence the inception of VGM wellness centre with evidence-based Physiotherapy treatments that are specific and customized to each one’s needs."
+
+    }
+
+]
