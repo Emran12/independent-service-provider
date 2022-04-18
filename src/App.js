@@ -8,6 +8,7 @@ import Blog from "./Pages/Blog/Blog";
 import NotFound from "./Pages/Shared/NotFound/NotFound";
 import AboutMe from "./Pages/AboutMe/AboutMe";
 import SignIn from "./Pages/SignIn/SignIn/SignIn";
+import SignUp from "./Pages/SignIn/SignUp/SignUp";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/blog" element={<Blog></Blog>}></Route>
         <Route path="/aboutme" element={<AboutMe></AboutMe>}></Route>
         <Route path="/signin" element={<SignIn></SignIn>}></Route>
+        <Route path="/signup" element={<SignUp></SignUp>}></Route>
 
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
