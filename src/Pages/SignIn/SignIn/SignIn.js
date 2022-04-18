@@ -1,10 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 
-import {
-  useSendPasswordResetEmail,
-  useSignInWithEmailAndPassword,
-} from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
@@ -13,19 +10,27 @@ const SignIn = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
+  const location = useLocation();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
   const navigateSignUp = (event) => {
-    navigate("/register");
+    navigate("/signup");
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+
     signInWithEmailAndPassword(email, password);
+    console.log(email, password);
   };
 
+  const from = location.state?.from?.pathname || "/";
+  if (user) {
+    navigate(from, { replace: true });
+  }
   return (
     <div className="container w-50 mx-auto">
       <h2 className="text-info text-center mt-2">Please Sign In</h2>
@@ -34,7 +39,7 @@ const SignIn = () => {
           <Form.Control
             ref={emailRef}
             type="email"
-            placeholder="Enter email"
+            placeholder="Enter your email"
             required
           />
         </Form.Group>
@@ -58,7 +63,7 @@ const SignIn = () => {
           onClick={navigateSignUp}
         >
           Please Sign Up
-        </Link>{" "}
+        </Link>
       </p>
     </div>
   );

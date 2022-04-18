@@ -43,7 +43,7 @@ const SignUp = () => {
           value="Sign up"
         />
       </form>
-      <p>
+      <p className="text-center">
         Already have an account?
         <Link
           to="/signin"
