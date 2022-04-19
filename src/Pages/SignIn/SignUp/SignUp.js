@@ -1,17 +1,24 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSendPasswordResetEmail,
+} from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import Loading from "../../Shared/Loading/Loading";
 import SocialSignIn from "../SocialSignIn/SocialSignIn";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const navigate = useNavigate();
 
+  if (loading) {
+    return <Loading></Loading>;
+  }
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -20,6 +27,7 @@ const SignUp = () => {
     setPassword(e.target.value);
   };
   if (user) {
+    console.log(user);
     navigate("/home");
   }
   const handleSubmit = (e) => {
@@ -50,9 +58,6 @@ const SignUp = () => {
             onBlur={handlePassword}
             required
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
         <Button
           className="mt-2 mb-2 rounded-pill w-75 p-2 bg-success text-light fs-2 border-info "

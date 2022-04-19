@@ -1,17 +1,22 @@
-import { sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../../firebase.init";
+import Loading from "../../Shared/Loading/Loading";
 import SocialSignIn from "../SocialSignIn/SocialSignIn";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,6 +38,18 @@ const SignIn = () => {
   if (user) {
     navigate(from, { replace: true });
   }
+  if (loading || sending) {
+    return <Loading></Loading>;
+  }
+  const resetPassword = async () => {
+    if (email) {
+      console.log(email);
+      await sendPasswordResetEmail(email);
+      toast("Sent email");
+    } else {
+      toast("please enter your email address");
+    }
+  };
 
   return (
     <div className="w-50 mx-auto mt-5">
@@ -42,6 +59,8 @@ const SignIn = () => {
           <Form.Control
             type="email"
             placeholder="Enter email"
+            autoFocus
+            off
             onBlur={handleEmail}
             required
           />
@@ -71,7 +90,10 @@ const SignIn = () => {
       </p>
       <p>
         Forget Password?
-        <button className="btn btn-link text-info pe-auto text-decoration-none">
+        <button
+          onClick={resetPassword}
+          className="btn btn-link text-info pe-auto text-decoration-none"
+        >
           Reset Password
         </button>
       </p>

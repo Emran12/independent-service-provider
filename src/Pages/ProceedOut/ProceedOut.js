@@ -1,12 +1,17 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const ProceedOut = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+  const location = useLocation();
+  if (loading) {
+    return <Navigate to="/signin" state={{ from: location }} replace />;
+  }
+
   const handleSubmit = () => {
     navigate("/greetings");
   };
