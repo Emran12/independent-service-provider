@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import SocialSignIn from "../SocialSignIn/SocialSignIn";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -58,13 +59,14 @@ const SignIn = () => {
         >
           Sign in
         </Button>
-        <p className="font-bold">
-          New with DR. SUMON CPS?
-          <Link to="/signup" className="text-decoration-none">
-            Sign up
-          </Link>
-        </p>
       </Form>
+      <p className="font-bold">
+        New with DR. SUMON CPS?
+        <Link to="/signup" className="text-decoration-none">
+          Sign up
+        </Link>
+      </p>
+      <SocialSignIn></SocialSignIn>
     </div>
   );
 };
