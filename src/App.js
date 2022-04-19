@@ -9,6 +9,9 @@ import NotFound from "./Pages/Shared/NotFound/NotFound";
 import AboutMe from "./Pages/AboutMe/AboutMe";
 import SignIn from "./Pages/SignIn/SignIn/SignIn";
 import SignUp from "./Pages/SignIn/SignUp/SignUp";
+import RequireAuth from "./Pages/SignIn/RequireAuth/RequireAuth";
+import ProceedOut from "./Pages/ProceedOut/ProceedOut";
+import Greetings from "./Pages/Greetings/Greetings";
 
 function App() {
   return (
@@ -22,7 +25,15 @@ function App() {
         <Route path="/aboutme" element={<AboutMe></AboutMe>}></Route>
         <Route path="/signin" element={<SignIn></SignIn>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
-
+        <Route
+          path="/proceedout"
+          element={
+            <RequireAuth>
+              <ProceedOut></ProceedOut>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route path="/greetings" element={<Greetings></Greetings>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
     </div>

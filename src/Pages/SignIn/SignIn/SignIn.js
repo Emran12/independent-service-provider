@@ -1,7 +1,9 @@
+import { sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import auth from "../../../firebase.init";
 import SocialSignIn from "../SocialSignIn/SocialSignIn";
 
@@ -10,7 +12,10 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -20,13 +25,14 @@ const SignIn = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    navigate("/home");
-  }
   const handleSubmit = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(email, password);
   };
+
+  if (user) {
+    navigate(from, { replace: true });
+  }
 
   return (
     <div className="w-50 mx-auto mt-5">
@@ -49,9 +55,6 @@ const SignIn = () => {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
         <Button
           className="mt-2 mb-2 rounded-pill w-75 p-2 bg-success text-light fs-2 border-info "
           variant="success"
@@ -66,7 +69,14 @@ const SignIn = () => {
           Sign up
         </Link>
       </p>
+      <p>
+        Forget Password?
+        <button className="btn btn-link text-info pe-auto text-decoration-none">
+          Reset Password
+        </button>
+      </p>
       <SocialSignIn></SocialSignIn>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
