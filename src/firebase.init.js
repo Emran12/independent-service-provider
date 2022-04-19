@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBqV6crAiudT_LLOkEzctVrbkn89pV1mqM",
-  authDomain: "email-password-auth-92a7c.firebaseapp.com",
-  projectId: "email-password-auth-92a7c",
-  storageBucket: "email-password-auth-92a7c.appspot.com",
-  messagingSenderId: "259723164143",
-  appId: "1:259723164143:web:1853f300548f282e289e1a",
+  apiKey: "AIzaSyCpHJzytPUs5fwIfXjdiVmQ3mSb9o-Fv9Q",
+  authDomain: "orthopedic-physician-4ca6a.firebaseapp.com",
+  projectId: "orthopedic-physician-4ca6a",
+  storageBucket: "orthopedic-physician-4ca6a.appspot.com",
+  messagingSenderId: "1009197669744",
+  appId: "1:1009197669744:web:549868d34298b595cb43b5",
 };
 
 // Initialize Firebase

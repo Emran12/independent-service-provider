@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
+
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
 import logo from "../../../images/logo.png";
@@ -45,7 +46,12 @@ const Header = () => {
                 About Me
               </Nav.Link>
               {user ? (
-                <Button onClick={SignOut}>Sign out</Button>
+                <Button
+                  className="btn btn-link text-white bg-dark border-0 text-decoration-none"
+                  onClick={SignOut}
+                >
+                  Sign out
+                </Button>
               ) : (
                 <Nav.Link as={Link} to="signin">
                   Sign in

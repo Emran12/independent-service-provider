@@ -1,56 +1,71 @@
-import React from "react";
+import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import "../SignUp/SignUp.css";
+import auth from "../../../firebase.init";
 
 const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
   const navigate = useNavigate();
-  const navigateSignin = () => {
-    navigate("/signin");
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
   };
 
-  const handleSignUP = async (event) => {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  if (user) {
     navigate("/home");
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(email, password);
   };
+
   return (
-    <div className="signup-form">
-      <h1 className="text-center text-info">Please Sign Up</h1>
-      <form onSubmit={handleSignUP}>
-        <input type="text" name="name" id="" placeholder="Enter your name" />
+    <div className="w-50 mx-auto mt-5">
+      <h1 className="text-success">Please Sign Up</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Control type="text" placeholder="Enter name" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            onBlur={handleEmail}
+            required
+          />
+        </Form.Group>
 
-        <input
-          type="email"
-          name="email"
-          id=""
-          placeholder="Enter your email address"
-          required
-        />
-
-        <input
-          type="password"
-          name="password"
-          id=""
-          placeholder="Password"
-          required
-        />
-
-        <input
-          className="w-50 mx-auto btn btn-info mt-2"
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onBlur={handlePassword}
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+        <Button
+          className="mt-2 mb-2 rounded-pill w-75 p-2 bg-success text-light fs-2 border-info "
+          variant="success"
           type="submit"
-          value="Sign up"
-        />
-      </form>
-      <p className="text-center">
-        Already have an account?
-        <Link
-          to="/signin"
-          className="text-info pe-auto text-decoration-none"
-          onClick={navigateSignin}
         >
-          Please Sign in
+          Sign up
+        </Button>
+      </Form>
+
+      <p>
+        Already have an account?
+        <Link to="/signin" className="text-decoration-none">
+          Sign in
         </Link>
       </p>
     </div>
